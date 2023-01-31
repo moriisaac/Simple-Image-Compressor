@@ -2,6 +2,7 @@
 Author: Mori Isaac Wesonga
 Date: 2020-05-05
 Description: This is a simple image compressor
+Don't Forget to star
 
 '''
 
