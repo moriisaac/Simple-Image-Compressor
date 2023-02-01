@@ -7,28 +7,21 @@ Don't Forget to star
 '''
 
 
-
-
 import PIL
 from PIL import Image
-from tkinter.filedialog import *
+import argparse
 
-
-def main():
-    print("\033[32m", "Welcome to the image compressor😇", "\033[0m")
-    compressImage()
-
-def compressImage():
-    # Open the image
-    file = askopenfilename()
-    image = Image.open(file)
+def compress_image(input_directory, output_directory, compression_level):
+    image = Image.open(input_directory)
 
     # Compress the image
-    image.save('compressed.jpg',"JPEG", optimize=True, quality=50)
-
-    # Show the image
-    image.show()
-
+    image.save(output_directory, "JPEG", optimize=True, quality=compression_level)
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("input_directory", help="The path to the directory containing the images to be compressed.")
+    parser.add_argument("output_directory", help="The path to the directory where the compressed images will be saved.")
+    parser.add_argument("compression_level", type=int, help="An integer value between 1 and 100 that specifies the level of compression.")
+    args = parser.parse_args()
+
+    compress_image(args.input_directory, args.output_directory, args.compression_level)
